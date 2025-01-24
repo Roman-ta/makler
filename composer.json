@@ -1,0 +1,10 @@
+{
+    "name": "roman_ta/makler",
+    "type": "project",
+    "autoload": {
+        "psr-4": {
+            "Makler\\": "core/classes/"
+        }
+    },
+    "require": {}
+}

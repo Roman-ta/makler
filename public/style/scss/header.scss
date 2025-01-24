@@ -1,0 +1,26 @@
+.header {
+  padding-top: 30px;
+  &__wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  &__main {
+    display: flex;
+    align-items: center;
+    column-gap: 20px;
+  }
+
+  &__logotip {
+    max-width: 150px;
+  }
+
+  &__other {
+    display: flex;
+    align-items: center;
+    column-gap: 20px;
+
+  }
+
+}

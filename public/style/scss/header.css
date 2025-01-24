@@ -1,0 +1,23 @@
+.header {
+  padding-top: 30px;
+}
+.header__wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.header__main {
+  display: flex;
+  align-items: center;
+  column-gap: 20px;
+}
+.header__logotip {
+  max-width: 150px;
+}
+.header__other {
+  display: flex;
+  align-items: center;
+  column-gap: 20px;
+}
+
+/*# sourceMappingURL=header.css.map */
