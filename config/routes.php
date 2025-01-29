@@ -5,4 +5,5 @@ return [
     'about' => 'about',
     'register' => 'register',
     'auth' => 'auth',
+    'forms' => 'forms',
 ];

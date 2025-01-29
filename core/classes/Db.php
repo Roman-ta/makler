@@ -2,35 +2,35 @@
 
 namespace Makler;
 
+use PDO;
+
 class Db
 {
     private static $instance = null;
 
-    private \PDO $connection;
-    private string $dsn;
-    private string $username;
-    private string $password;
+    private PDO $connection;
+    private string $dsn = 'mysql:host=localhost;dbname=makler';
+    private string $username = 'root';
+    private string $password = '';
     private array $options;
 
 
-    public static function getInstance($config): Db
+
+    public static function getInstance(): Db
     {
         if (self::$instance == null) {
-            self::$instance = new Self($config);
+            self::$instance = new Self();
         }
         return self::$instance;
     }
 
 
-    private function __construct(array $config)
+    private function __construct()
     {
-        $this->dsn = $config['dsn'];
-        $this->username = $config['username'];
-        $this->password = $config['password'];
         $this->options = $config['options'] ?? [
-            \PDO::ATTR_DEFAULT_FETCH_MODE => \PDO::FETCH_ASSOC,
-            \PDO::ATTR_ERRMODE => \PDO::ERRMODE_EXCEPTION,
-            \PDO::ATTR_PERSISTENT => false
+            PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
+            PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
+            PDO::ATTR_PERSISTENT => false
         ];
         $this->connect();
     }
@@ -38,7 +38,7 @@ class Db
     private function connect(): void
     {
         try {
-            $this->connection = new \PDO($this->dsn, $this->username, $this->password, $this->options);
+            $this->connection = new PDO($this->dsn, $this->username, $this->password, $this->options);
         } catch (\PDOException $e) {
             echo $e->getMessage();
         }
@@ -60,7 +60,7 @@ class Db
         try {
             $this->query($sql, $params);
         } catch (\PDOException $e) {
-            throw new \PDOException($e->getMessage(), (int)$e->getCode());
+            throw new \PDOException($e->getMessage());
         }
     }
 
@@ -73,7 +73,14 @@ class Db
     {
         return $this->query($sql, $params)->fetchAll();
     }
+    public function insert(string $table, array $params): void
+    {
+        $rows = implode(", ", array_keys($params));
 
+        $placeholders = implode(', ', array_map(fn($col) => ":$col", array_keys($params)));
+        $sql = "INSERT INTO {$table} ({$rows}) VALUES ({$placeholders})";
+        $this->query($sql, $params);
+    }
     private function __clone()
     {
 
