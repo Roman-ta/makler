@@ -1,9 +1,14 @@
 $(document).ready(function () {
     $('.header__signin a').click(function (e) {
         e.preventDefault()
+        if($('.auth').find('.modal-auth').length > 0){
+            $('.modal-auth').css('display', 'block');
+            return;
+        }
         $.ajax({
-            url: "auth",
+            url: "forms",
             method: "POST",
+            data : {action : 'auth'},
             success: function (response) {
                 $('.auth').append(response)
 
@@ -14,7 +19,7 @@ $(document).ready(function () {
     })
 
     $('.auth').on('click', '.modal-block__close', function () {
-        $('.auth__container').css('display', 'none');
+        $('.modal-auth').css('display', 'none');
     })
 });
 

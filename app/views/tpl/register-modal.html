@@ -1,7 +1,7 @@
-<div class="modal auth__container">
+<div class="modal auth__container modal-register">
     <div class="modal__wrapper auth__wrapper">
         <div class="modal__body auth__body">
-            <div class="modal__block auth__block modal-block">
+            <div class="modal__block auth__block">
                 <div class="modal-block__top">
                     <div class="modal-block__title">Регистрация</div>
                     <div class="modal-block__close">
@@ -9,6 +9,31 @@
                     </div>
                 </div>
 
+                <div class="method">
+                    <div class="method__phone">Номер</div>
+                    <div class="method__slider slider-method">
+                        <div class="slider-method__line">
+                            <div class="slider-method__circle"></div>
+                        </div>
+                    </div>
+                    <div class="method__email">Email</div>
+                </div>
+                <form class="modal-form" action="forms" method="POST" enctype="multipart/form-data" >
+                    <input type="hidden" name="register" value="true">
+                    <div class="modal-form__block modal-form__phone">
+                        <input class="modal-form__input modal-form__phone" placeholder="phone" type="text" name="phone" autocomplete="phone">
+                    </div>
+                    <div class="modal-form__block modal-form__email">
+                        <input class="modal-form__input modal-form__mail" placeholder="email" type="text" name="email" autocomplete="email">
+                    </div>
+
+                    <button class="modal-form__submit" type="submit">Вперед</button>
+                </form>
+
+                <div class="modal__block__init init-modal">
+                    <div class="init-modal__question">уже есть аккаунт ?</div>
+                    <div class="init-modal__auth"><a href="auth">ВОЙТИ</a></div>
+                </div>
 
             </div>
         </div>
